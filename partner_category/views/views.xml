@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--this is province form-->
+        <record id="province_form_id" model="ir.ui.view">
+            <field name="name">Main Category Form</field>
+            <field name="model">country.province</field>
+            <field name="arch" type="xml">
+                <form string="_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="country_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--this is city form-->
+        <record id="city_form_id" model="ir.ui.view">
+            <field name="name">City Form</field>
+            <field name="model">province.city</field>
+            <field name="arch" type="xml">
+                <form string="_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="province_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--this is region form-->
+        <record id="region_form_id" model="ir.ui.view">
+            <field name="name">Region Form</field>
+            <field name="model">city.region</field>
+            <field name="arch" type="xml">
+                <form string="_form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="city_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--this is province tree-->
+        <record id="province_tree_id" model="ir.ui.view">
+            <field name="name">Province Tree</field>
+            <field name="model">country.province</field>
+            <field name="arch" type="xml">
+                <tree string="_tree">
+                    <field name="name"/>
+                    <field name="country_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--this is city tree-->
+        <record id="city_tree_id" model="ir.ui.view">
+            <field name="name">City Tree</field>
+            <field name="model">province.city</field>
+            <field name="arch" type="xml">
+                <tree string="_tree">
+                    <field name="name"/>
+                    <field name="province_id"/>
+                </tree>
+            </field>
+        </record>
+        <!--this is region tree-->
+        <record id="region_tree_id" model="ir.ui.view">
+            <field name="name">City</field>
+            <field name="model">city.region</field>
+            <field name="arch" type="xml">
+                <tree string="_tree">
+                    <field name="name"/>
+                    <field name="city_id"/>
+                </tree>
+            </field>
+        </record>
+        <!--this is province action-->
+        <record id="province_action_id" model="ir.actions.act_window">
+            <field name="name">Main Categories</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">country.province</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--this is city action-->
+        <record id="city_action_id" model="ir.actions.act_window">
+            <field name="name">Sub Categories</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">province.city</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--this is region action-->
+        <record id="region_action_id" model="ir.actions.act_window">
+            <field name="name">City</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">city.region</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--these are mennu items-->
+        <menuitem id="partner_category_main_id" name="Partner Category" parent="contacts.menu_contacts"/>
+        <menuitem id="province_menu_id" name="Main Category" parent="partner_category_main_id" action="province_action_id"/>
+        <menuitem id="city_menu_id" name="Sub category" parent="partner_category_main_id" action="city_action_id"/>
+        <menuitem id="region_menu_id" name="City" parent="partner_category_main_id" action="region_action_id"/>
+
+    </data>
+</odoo>

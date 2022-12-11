@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="partner_form_id" model="ir.ui.view">
+            <field name="name">Partner Form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <group>
+                        <field name="region_id"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Inherit Form View to Modify it -->
+        <record id="partner_search_view_id" model="ir.ui.view">
+            <field name="name">Partner Search View</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//search/group[@name='group_by']" position="inside">
+                    <filter name="province_id" domain="[]" string="Province" context="{'group_by': 'province_id'}"/>
+                    <filter name="city_id" domain="[]" string="City" context="{'group_by': 'city_id'}"/>
+                    <filter name="region_id" domain="[]" string="Region" context="{'group_by': 'region_id'}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
