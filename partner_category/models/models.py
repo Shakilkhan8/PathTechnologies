@@ -17,6 +17,7 @@ class CityRegion(models.Model):
 
     name = fields.Char('City')
     city_id = fields.Many2one('province.city','Sub Category')
+    main_cat_id = fields.Many2one('country.province','Main Category')
 
 
 
